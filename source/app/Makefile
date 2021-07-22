@@ -11,6 +11,9 @@ CC = arm-linux-gnueabihf-g++
 STRIP = arm-linux-gnueabihf-strip
 USE_BOOTUP:=0
 
+ENABLE_HDMI:=0
+ENABLE_MIPI:=1
+
 CFLAGS = -I$(ZKGUI_PATH)/include -I$(ZKGUI_PATH)/include/freetype2 -I$(ZKGUI_PATH)/include/easyui -I$(PROJECT_PATH)/include
 LDFLAGS = -L$(ZKGUI_PATH)/lib -L$(PROJECT_PATH)/lib
 CONFIG_PREFIX =.
@@ -36,10 +39,10 @@ $(TARGET):$(CPPOBJS) $(COBJS)
 	$(CC) $(CFLAGS) $(LDFLAGS) $(LOCAL_CFLAGS) $(LOCAL_LDFLAGS) -o $@ $^
 
 $(CPPOBJS):%.cpp.o:%.cpp
-	$(CC) -DENABLE_HDMI=$(ENABLE_HDMI) $(CFLAGS) $(LDFLAGS) $(LOCAL_CFLAGS) $(LOCAL_LDFLAGS) -c $^ -o $@
+	$(CC) -DENABLE_HDMI=$(ENABLE_HDMI) -DENABLE_MIPI=$(ENABLE_MIPI) $(CFLAGS) $(LDFLAGS) $(LOCAL_CFLAGS) $(LOCAL_LDFLAGS) -c $^ -o $@
 
 $(COBJS):%.c.o:%.c
-	$(CC) -DENABLE_HDMI=$(ENABLE_HDMI) $(CFLAGS) $(LDFLAGS) $(LOCAL_CFLAGS) $(LOCAL_LDFLAGS) -c $^ -o $@
+	$(CC) -DENABLE_HDMI=$(ENABLE_HDMI) -DENABLE_MIPI=$(ENABLE_MIPI) $(CFLAGS) $(LDFLAGS) $(LOCAL_CFLAGS) $(LOCAL_LDFLAGS) -c $^ -o $@
 
 install:
 	-mkdir -p $(CONFIG_PREFIX)/bin

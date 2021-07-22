@@ -37,12 +37,20 @@ int sstar_disp_init()
     memset(&stPubAttr, 0, sizeof(MI_DISP_PubAttr_t));
     stPubAttr.u32BgColor = YUYV_BLACK;
     stPubAttr.eIntfSync = E_MI_DISP_OUTPUT_USER;
+#if ENABLE_MIPI
+    stPubAttr.eIntfType = E_MI_DISP_INTF_MIPIDSI;
+#else
     stPubAttr.eIntfType = E_MI_DISP_INTF_TTL;
+#endif
     MI_DISP_SetPubAttr(0, &stPubAttr);
     MI_DISP_Enable(0);
 
     memset(&stPubAttr, 0, sizeof(MI_DISP_PubAttr_t));
+#if ENABLE_MIPI
+    stPubAttr.eIntfType = E_MI_DISP_INTF_MIPIDSI;
+#else
     stPubAttr.eIntfType = E_MI_DISP_INTF_TTL;
+#endif
     MI_DISP_GetPubAttr(0,&stPubAttr);
     memset(&stLayerAttr, 0, sizeof(MI_DISP_VideoLayerAttr_t));
     memset(&stRotateConfig, 0, sizeof(MI_DISP_RotateConfig_t));
@@ -68,7 +76,11 @@ int sstar_disp_init()
     MI_DISP_EnableInputPort(0, 0);
 
     //init panel
+#if ENABLE_MIPI
+    eIntfType = E_MI_PNL_INTF_MIPI_DSI;
+#else
     eIntfType = E_MI_PNL_INTF_TTL;
+#endif
     MI_PANEL_Init(eIntfType);
 	MI_PANEL_GetPanelParam(eIntfType, &pstParamCfg);
 
@@ -77,7 +89,11 @@ int sstar_disp_init()
 
 int sstar_disp_Deinit()
 {
+#if ENABLE_MIPI
+    MI_PANEL_IntfType_e eIntfType = E_MI_PNL_INTF_MIPI_DSI;
+#else
     MI_PANEL_IntfType_e eIntfType = E_MI_PNL_INTF_TTL;
+#endif
     MI_PANEL_BackLightConfig_t stBackLightCfg;
     memset(&stBackLightCfg, 0, sizeof(MI_PANEL_BackLightConfig_t));
 
