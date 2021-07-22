@@ -12,6 +12,8 @@
     <string name="icon_voicedetect">Voice Detection</string>
     <string name="icon_wifi">Network</string>
     <string name="icon_audio">Audio Player</string>
+    <string name="icon_localmedia">Local Media</string>
+    <string name="icon_player">Player</string>
     <string name="icon_dualsensor">Dual Sensor</string>
     <string name="icon_usbcamera">Usb Camera</string>
     <string name="icon_setting">Local Setting</string>

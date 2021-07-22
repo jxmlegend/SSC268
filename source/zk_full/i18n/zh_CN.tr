@@ -12,6 +12,8 @@
     <string name="icon_voicedetect">语言检测</string>
     <string name="icon_wifi">网络</string>
     <string name="icon_audio">音频播放</string>
+    <string name="icon_localmedia">本地多媒体</string>
+    <string name="icon_player">播放器</string>
     <string name="icon_dualsensor">画面拼接</string>
     <string name="icon_usbcamera">摄像头</string>
     <string name="icon_setting">设置</string>
